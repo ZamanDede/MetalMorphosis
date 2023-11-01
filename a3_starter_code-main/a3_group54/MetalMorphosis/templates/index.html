@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MetalMorphosis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style/index.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand ms-5 fs-2" href="index.html">MetalMorphosis</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse pe-5" id="mynavbar">
+                    <ul class="navbar-nav ms-auto fs-5">
+                        <li class="nav-item me-3">
+                            <a class="nav-link " href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link " href="create-event.html">Create Events</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link " href="user-booking-history.html">My Tickets</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="javascript:void(0)">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+    </header>
+
+    <!-- Main -->
+    <main>
+
+        <!-- Main Container -->
+        <div class="container mt-4">
+
+            <!-- Row1 -->
+            <div class="row">
+                <div class="col text-center">
+                    <!-- Jumbotron -->
+                    <div class="py-5">
+                        <h1 class="display-4">Discover the World of Metal Music</h1>
+                        <h5 class="lead">MetalMorphosis is your ultimate hub for all things metal. Join us and
+                            explore the latest events, connect with emerging bands, and immerse yourself in the
+                            metal community.</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row2 -->
+            <div class="row mb-4">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                            <img src="static\img\Carousel\evgeniy-smersh-v2GmFH3a7uo-unsplash.jpg"
+                                class="d-block w-100" alt="Metal Stage">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Welcome to MetalMorphosis!</h5>
+                                <p>Dive into a world where metal reigns supreme. From roaring riffs to powerful drums,
+                                    discover a hub where all metal genres unite.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <img src="static\img\Carousel\evgeniy-smersh-Ydy9e1yUUMY-unsplash.jpg"
+                                class="d-block w-100" alt="Emerging Band Performance">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Spotlight On Every Artist</h5>
+                                <p>Giving voice to local bands and less-known artists. Create, explore, and join events
+                                    from thrash to symphonic metal. Your music deserves to be heard!</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-item">
+                            <img src="static\img\Carousel\juliette-f-mawOOCqXhrY-unsplash.jpg"
+                                class="d-block w-100" alt="Metal Community Interaction">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Forge Bonds in the Metal Community</h5>
+                                <p>Engage in fiery dialogues, share insights, buy event tickets, and be a part of a
+                                    thriving metal community. MetalMorphosis is more than music; it's a movement!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- Row3 -->
+            <div class="row mt-3">
+                <div class="col">
+                    <ul class="nav justify-content-center">
+                        <!-- Event Status Dropdown -->
+                        <li class="nav-item dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Event Status
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">All</a></li>
+                                <li><a class="dropdown-item" href="#">Open</a></li>
+                                <li><a class="dropdown-item" href="#">Inactive</a></li>
+                                <li><a class="dropdown-item" href="#">Sold Out</a></li>
+                                <li><a class="dropdown-item" href="#">Cancelled</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Genres Dropdown -->
+                        <li class="nav-item dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Genres
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">All</a></li>
+                                <li><a class="dropdown-item" href="#">Heavy Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Progressive Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Thrash Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Power Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Death Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Black Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Viking Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Symphonic Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Industrial Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Modern Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Neoclassical Metal</a></li>
+                                <li><a class="dropdown-item" href="#">Djent</a></li>
+                                <li><a class="dropdown-item" href="#">Metalcore</a></li>
+                                <li><a class="dropdown-item" href="#">Nu Metal</a></li>
+
+                            </ul>
+                        </li>
+                        <!-- Location Dropdown -->
+                        <li class="nav-item dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                data-bs-popper="static" aria-expanded="false">
+                                Location
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">All Cities</a></li>
+                                <li><a class="dropdown-item" href="#">Sydney</a></li>
+                                <li><a class="dropdown-item" href="#">Melbourne</a></li>
+                                <li><a class="dropdown-item" href="#">Brisbane</a></li>
+                                <li><a class="dropdown-item" href="#">Perth</a></li>
+                                <li><a class="dropdown-item" href="#">Adelaide</a></li>
+                                <li><a class="dropdown-item" href="#">Canberra</a></li>
+                                <li><a class="dropdown-item" href="#">Gold Coast</a></li>
+                                <li><a class="dropdown-item" href="#">Hobart</a></li>
+                                <li><a class="dropdown-item" href="#">Darwin</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Events -->
+            <!-- Row 1 -->
+            <div class="row mt-3">
+                <!-- Event1 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\tim-toomey-N__2iP37Z04-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Heavy Heaven</h5>
+                            <p class="card-text">An iconic heavy metal event, featuring legendary bands and
+                                electrifying
+                                solos.</p>
+                            <p class="mb-2">Event Status: Upcoming</p>
+                            <p class="mb-auto">Djent</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event2 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\yvette-de-wit-NYrVisodQ2M-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Metal Uprising</h5>
+                            <p class="card-text">A night with the rising stars of metal, showcasing new talent and
+                                fresh
+                                sounds.</p>
+                            <p class="mb-2">Event Status: Completed</p>
+                            <p class="mb-auto">Progressive Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event3 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\steven-aguilar-kJ3l27qxBfI-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Thrashing Titans</h5>
+                            <p class="card-text">Experience the raw energy of thrash metal with renowned artists and
+                                breakneck riffs.</p>
+                            <p class="mb-2">Event Status: Ongoing</p>
+                            <p class="mb-auto">Thrash Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="row mt-3">
+                <!-- Event4 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\sam-moghadam-khamseh-_T1JWv8mids-unsplash.jpg" class="card-img-top"
+                            alt="Metalcore Event Image">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Metalcore Mastery</h5>
+                            <p class="card-text">Experience the raw energy of Metalcore at this unmissable event, with
+                                intensity and rhythm.</p>
+                            <p class="mb-2">Event Status: Upcoming</p>
+                            <p class="mb-auto">Metalcore</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event5 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\evgeniy-smersh-S8DifWm-8cU-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Djent Dominion</h5>
+                            <p class="card-text">Experience the rhythm complexity and innovative guitar work
+                                characteristic of Djent.</p>
+                            <p class="mb-2">Event Status: Ongoing</p>
+                            <p class="mb-auto">Djent</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event6 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\hugo-l-casanova-eXb2qYOcnys-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Symphonic Saga</h5>
+                            <p class="card-text">Embark on a musical journey that blends heavy metal with classical
+                                symphony.</p>
+                            <p class="mb-2">Event Status: Upcoming</p>
+                            <p class="mb-auto">Symphonic Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="row mt-3">
+
+                <!-- Event7 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\jivko-georgiev-ocppUUae2GA-unsplash.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Mystic Melodies</h5>
+                            <p class="card-text">Dive into the intricate and immersive world of progressive metal
+                                with Mystic Melodies.</p>
+                            <p class="mb-2">Event Status: Completed</p>
+                            <p class="mb-auto">Progressive Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event8 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\diane-picchiottino-6F5ct471oRk-unsplash.jpg" class="card-img-top"
+                            alt="Rhythmic Rebellion Event Image">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Rhythmic Rebellion</h5>
+                            <p class="card-text">Experience the fusion of aggressive and melodic sounds in
+                                alternative metal.</p>
+                            <p class="mb-2">Event Status: Ongoing</p>
+                            <p class="mb-auto">Alternative Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event9 -->
+                <div class="col-md-4 mb-3">
+                    <div class="card mx-auto custom-card">
+                        <img src="static\img\diego-ornelas-tapia-KazZtMYsPGs-unsplash.jpg" class="card-img-top"
+                            alt="Thunderous Vibes Event Image">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Thunderous Vibes</h5>
+                            <p class="card-text">Feel the power of heavy metal resonate with every chord in
+                                Thunderous Vibes.</p>
+                            <p class="mb-2">Event Status: Ongoing</p>
+                            <p class="mb-auto">Heavy Metal</p>
+                            <a href="event-detail.html" class="btn">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-3">
+        <div class="container">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">About MetalMorphosis</a></li>
+                <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
