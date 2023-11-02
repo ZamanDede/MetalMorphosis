@@ -22,17 +22,16 @@ class Event(db.Model):
     genre = db.Column(db.String(50))
     artist_or_band = db.Column(db.String(150))
     location = db.Column(db.String(200))
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime, nullable=False)
+    event_date = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.String(500))
     ticket_count = db.Column(db.Integer, nullable=False)
     venue = db.Column(db.String(200))
 
-    image_paths = db.Column(db.String(2000))
+    image_path = db.Column(db.String(2000))
 
-    def get_images(self):
-        """Returns a list of images for the event."""
-        return self.image_paths.split(",") if self.image_paths else []
+    def get_image(self):
+        """Returns the image path for the event."""
+        return self.image_path
 
     def __repr__(self):
         return f"Event: {self.title}"

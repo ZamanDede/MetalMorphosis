@@ -19,7 +19,7 @@ def search():
     else:
         return redirect(url_for('main.index'))
 
-@mainbp.route('/user-booking-history')
+@mainbp.route('/user_booking_history')
 @login_required  # Ensure user is logged in to view this page
 def user_booking_history():
     # Fetch events booked by the logged-in user
@@ -27,4 +27,4 @@ def user_booking_history():
         db.select(Event).join(Booking, Booking.event_id == Event.id).where(Booking.user_id == current_user.id)
     ).all()
 
-    return render_template('user-booking-history.html', events=booked_events)
+    return render_template('booking.html', events=booked_events)

@@ -12,7 +12,7 @@
                      <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm">
                      <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Search</button>
                    </form>
-                  
+
                </div>
             </div>
          </div>
@@ -39,7 +39,7 @@
                   <p class="card-text">{{ event.genre }}</p>
                   <p class="card-text">{{ event.artist_or_band }}</p>
                </div>
-               <div class="card-footer"><a href="{{ url_for('event.show', id=event.id) }}" class ="btn btn-danger"> View Details </a></div>
+               <div class="card-footer"><a href="{{ url_for('events.show', id=event.id) }}" class ="btn btn-danger"> View Details </a></div>
             </div>
             {% endfor %}
          </div>

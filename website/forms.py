@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField, DateField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -23,17 +23,16 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
 
+# Create events form
 class EventForm(FlaskForm):
     title = StringField('Event Title', validators=[InputRequired()])
     genre = StringField('Genre')
     artist_or_band = StringField('Artist/Band Name', validators=[InputRequired()])
     location = StringField('Location', validators=[InputRequired()])
-    start_date = DateTimeField('Start Date', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
-    end_date = DateTimeField('End Date', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
+    event_date = DateField('Event Date', format='%Y-%m-%d', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired(), Length(max=500)])
     ticket_count = IntegerField('Ticket Count', validators=[InputRequired()])
     venue = StringField('Event Venue', validators=[InputRequired()])
-
     image = FileField('Event Image', validators=[
         FileRequired(message='Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports PNG, JPG, png, jpg')
