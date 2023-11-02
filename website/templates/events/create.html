@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/create-event.css') }}">
+{% endblock %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+    <main>
+        <!-- Main Container -->
+        <div class="container mt-4">
+
+            <!-- Heading-->
+            <h2 class="text-center">Create an Event</h2>
+
+            <!-- Create Event Form-->
+            <div class="event-form">
+                {{ render_form(form) }}
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}

@@ -26,17 +26,16 @@ def create():
             genre=form.genre.data,
             artist_or_band=form.artist_or_band.data,
             location=form.location.data,
-            start_date=form.start_date.data,
-            end_date=form.end_date.data,
+            event_date=form.event_date.data,
             description=form.description.data,
             ticket_count=form.ticket_count.data,
             venue=form.venue.data,
-            image_paths=db_file_path
+            image_path=db_file_path
         )
         db.session.add(event)
         db.session.commit()
         flash('Successfully created new event', 'success')
-        return redirect(url_for('events.create'))
+        return redirect(url_for('events.show', id=event.id))
     return render_template('events/create.html', form=form)
 
 def check_upload_file(form):
@@ -44,21 +43,24 @@ def check_upload_file(form):
     filename = fp.filename
     BASE_PATH = os.path.dirname(__file__)
     upload_path = os.path.join(BASE_PATH, 'static/image', secure_filename(filename))
-    db_upload_path = '/static/image/' + secure_filename(filename)
+    db_upload_path = 'image/' + secure_filename(filename)
     fp.save(upload_path)
     return db_upload_path
+
 
 @eventsbp.route('/<id>/comment', methods=['GET', 'POST'])
 @login_required
 def comment(id):
     form = CommentForm()
-    event = db.session.scalar(db.select(Event).where(Event.id==id))
+    # No need to load the event if you're only using the ID
     if form.validate_on_submit():
-        comment = Comment(text=form.text.data, event=event, user=current_user)
+        # Create a comment with the event_id and user_id
+        comment = Comment(text=form.text.data, event_id=id, user_id=current_user.id)
         db.session.add(comment)
         db.session.commit()
         flash('Your comment has been added', 'success')
     return redirect(url_for('events.show', id=id))
+
 
 @eventsbp.route('/<id>/book', methods=['POST'])
 @login_required
