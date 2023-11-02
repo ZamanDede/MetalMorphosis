@@ -32,10 +32,12 @@
             {% for event in events %}
             <div class="card mx-3">
                <img class="card-img-top"
-                  src="{{ event.image }}" alt="event picture">
+                  src="{{ event.image_paths }}" alt="event picture">
                <div class="card-body">
-                  <h5 class="card-title">{{ event.name }}</h5>
+                  <h5 class="card-title">{{ event.title }}</h5>
                   <p class="card-text">{{ event.description }}</p>
+                  <p class="card-text">{{ event.genre }}</p>
+                  <p class="card-text">{{ event.artist_or_band }}</p>
                </div>
                <div class="card-footer"><a href="{{ url_for('event.show', id=event.id) }}" class ="btn btn-danger"> View Details </a></div>
             </div>
