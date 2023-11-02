@@ -1,47 +1,99 @@
 {% extends 'base.html' %}
 
 {% block header %}
-      <!--Jumbotron-->
-      <div class="container">
-         <div class="row justify-content-center mt-5 pb-4">
-            <div class="col-md-8">
-               <div class="card shadow p-5 mb-5 bg-light">
-                  <h1 class="text-center mb-3">Find Your Favourite Metal Events</h1>
+<!--Jumbotron-->
+<div class="container">
+    <div class="row justify-content-center mt-5 pb-4">
+        <div class="col-md-8">
+            <div class="card shadow p-5 mb-5 bg-light">
+                <h1 class="text-center mb-3">Find Your Favourite Metal Events</h1>
 
-                  <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}" >
-                     <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm">
-                     <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Search</button>
-                   </form>
+                <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}">
+                    <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm">
+                    <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Search</button>
+                </form>
 
-               </div>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 
 {% block content %}
-        <div class="py-5">
-            <h1 class="display-4">Discover the World of Metal Music</h1>
-            <h5 class="lead">MetalMorphosis is your ultimate hub for all things metal. Join us and
-                explore the latest events, connect with emerging bands, and immerse yourself in the
-                metal community.</h5>
-        </div>
+<div class="py-5">
+    <h1 class="display-4">Discover the World of Metal Music</h1>
+    <h5 class="lead">MetalMorphosis is your ultimate hub for all things metal. Join us and
+        explore the latest events, connect with emerging bands, and immerse yourself in the
+        metal community.</h5>
+</div>
 
-        <div class="card-group">
-            {% for event in events %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="genreDropdown" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Genres
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="genreDropdown">
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='All') }}">All Genres</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Heavy Metal') }}">Heavy Metal</a>
+        </li>
+        <li><a class="dropdown-item"
+                href="{{ url_for('events.filter_by_genre', genre='Progressive Metal') }}">Progressive Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Thrash Metal') }}">Thrash
+                Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Power Metal') }}">Power Metal</a>
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Death Metal') }}">Death Metal</a>
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Black Metal') }}">Black Metal</a>
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Viking Metal') }}">Viking
+                Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Symphonic Metal') }}">Symphonic
+                Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Industrial Metal') }}">Industrial
+                Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Modern Metal') }}">Modern
+                Metal</a></li>
+        <li><a class="dropdown-item"
+                href="{{ url_for('events.filter_by_genre', genre='Neoclassical Metal') }}">Neoclassical Metal</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Djent') }}">Djent</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Metalcore') }}">Metalcore</a>
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('events.filter_by_genre', genre='Nu Metal') }}">Nu Metal</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for event in events %}
+        {% if loop.index is divisibleby 4 and not loop.first %}
+    </div>
+    <div class="row">
+        {% endif %}
+        <div class="col-md-4">
             <div class="card mx-3">
-               <img class="card-img-top"
-                  src="{{ event.image_paths }}" alt="event picture">
-               <div class="card-body">
-                  <h5 class="card-title">{{ event.title }}</h5>
-                  <p class="card-text">{{ event.description }}</p>
-                  <p class="card-text">{{ event.genre }}</p>
-                  <p class="card-text">{{ event.artist_or_band }}</p>
-               </div>
-               <div class="card-footer"><a href="{{ url_for('events.show', id=event.id) }}" class ="btn btn-danger"> View Details </a></div>
+                <img class="card-img-top" src="{{ url_for('static', filename=event.image_path) }}" alt="event picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p>{{ event.status }}</p>
+                    <p class="card-text">{{ event.description }}</p>
+                    <p class="card-text">{{ event.genre }}</p>
+                    <p class="card-text">{{ event.artist_or_band }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('events.show', id=event.id) }}" class="btn btn-danger"> View Details </a>
+                </div>
             </div>
-            {% endfor %}
-         </div>
-      </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+
+
+</div>
 {% endblock %}

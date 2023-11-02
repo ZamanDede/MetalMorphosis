@@ -26,6 +26,9 @@ class Event(db.Model):
     description = db.Column(db.String(500))
     ticket_count = db.Column(db.Integer, nullable=False)
     venue = db.Column(db.String(200))
+    status = db.Column(db.String(50), nullable=False, default='Open')
+    comments = db.relationship('Comment', backref='event', lazy=True)
+    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     image_path = db.Column(db.String(2000))
 

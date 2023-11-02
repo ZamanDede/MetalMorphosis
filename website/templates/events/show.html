@@ -25,13 +25,20 @@
 
     <!-- Event Details -->
     <div class="card">
-        <img class="media-image" src="{{ url_for('static', filename=event.get_image()) }}" alt="{{ event.title }}">
+        <img class="media-image" src="{{ url_for('static', filename=event.image_path) }}" alt="{{ event.title }}">
         <div class="card-content">
             <small class="text-muted">{{ event.artist_or_band }}</small>
+            <p>{{ event.status }}</p>
             <h5>{{ event.location }}</h5>
             <p>{{ event.description }}</p>
             <!-- Booking Form -->
             {{ render_form(booking_form, action=url_for('events.book', id=event.id)) }}
+            <!-- Cancel Event Button -->
+            {% if current_user.is_authenticated and event.creator_id == current_user.id %}
+            <form action="{{ url_for('events.cancel', id=event.id) }}" method="post">
+                <button type="submit" class="btn btn-warning">Cancel Event</button>
+            </form>
+            {% endif %}
         </div>
     </div>
 
