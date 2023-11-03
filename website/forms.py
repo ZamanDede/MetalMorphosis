@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField, DateField
-from wtforms.validators import InputRequired, Email, EqualTo, Length
+from wtforms.validators import InputRequired, Email, EqualTo, Length, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
@@ -31,7 +31,7 @@ class EventForm(FlaskForm):
     location = StringField('Location', validators=[InputRequired()])
     event_date = DateField('Event Date', format='%Y-%m-%d', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired(), Length(max=500)])
-    ticket_count = IntegerField('Ticket Count', validators=[InputRequired()])
+    ticket_count = IntegerField('Ticket Count', validators=[InputRequired(), NumberRange(min=1, max=None, message=None)])
     venue = StringField('Event Venue', validators=[InputRequired()])
     image = FileField('Event Image', validators=[
         FileRequired(message='Image cannot be empty'),
@@ -46,5 +46,5 @@ class CommentForm(FlaskForm):
 
 #User booking
 class BookingForm(FlaskForm):
-    quantity = IntegerField('Number of Tickets', validators=[InputRequired(message='Please specify the number of tickets you want to book.')])
+    quantity = IntegerField('Number of Tickets', validators=[InputRequired(), NumberRange(min=1, max=None, message='Please specify the number of tickets you want to book.')])
     submit = SubmitField('Book Now')
