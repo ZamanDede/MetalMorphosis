@@ -1,0 +1,38 @@
+@import 'global-styles.css';
+
+/* Form Styles */
+.event-form {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--primary-dark);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    color: var(--primary-light);
+}
+
+.event-form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-light);
+}
+
+.event-form .form-control, .event-form .form-select {
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    background-color: var(--secondary-dark);
+    color: var(--primary-light);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.event-form .form-control::placeholder {
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.event-form .form-control:focus {
+    border-color: var(--accent);
+    background-color: var(--primary-dark);
+    outline: none;
+    box-shadow: 0px 0px 5px var(--accent);
+}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='show.css') }}">
+{% endblock %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<div class="container">
+    <!-- Event Header -->
+    <div class="row mt-5 mb-3">
+        <div class="col-md-12">
+            <div class="float-left">
+                <h1 class="mb-0">{{ event.title }}</h1>
+                <p>{{ event.genre }}</p>
+            </div>
+            <div class="float-right text-right">
+                <p class="mb-0">{{ event.venue }}</p>
+                <h2>{{ event.event_date.strftime('%B %d, %Y') }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details -->
+    <div class="card">
+        <img class="media-image" src="{{ url_for('static', filename=event.image_path) }}" alt="{{ event.title }}">
+        <div class="card-content">
+            <small class="text-muted">{{ event.artist_or_band }}</small>
+            <p>{{ event.status }}</p>
+            <h5>{{ event.location }}</h5>
+            <p>{{ event.description }}</p>
+            <!-- Booking Form -->
+            {{ render_form(booking_form, action=url_for('events.book', id=event.id)) }}
+            <!-- Cancel Event Button -->
+            {% if current_user.is_authenticated and event.creator_id == current_user.id %}
+            <form action="{{ url_for('events.cancel', id=event.id) }}" method="post">
+                <button type="submit" class="btn btn-warning">Cancel Event</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr>
+    <!-- Comments Section -->
+    <div class="row comments-section">
+        <div class="col-md-12">
+            <h2>Comments</h2>
+        </div>
+        <!-- Comment Form -->
+        <div class="col-md-12 border-bottom">
+            {{ render_form(comment_form, action=url_for('events.comment', id=event.id)) }}
+
+        </div>
+        <!-- List Comments -->
+        {% for comment in event.comments %}
+        <div class="col-md-12 comment">
+            <span class="comment-user">{{ comment.user.name }}</span>
+            <span class="comment-date text-muted">{{ comment.created_at.strftime('%B %d, %Y, %I:%M %p') }}</span>
+            <p class="comment-text">{{ comment.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
