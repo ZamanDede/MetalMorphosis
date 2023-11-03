@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5 white_text">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="page-header">
@@ -16,7 +16,7 @@
 
             <!-- When you have login form, then do show the user a link to register -->
             {% if heading|lower == 'login' %}
-                <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+                <p class="white_text">New user? <a class="white_text" href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
             {% endif %}
         </div>
     </div>
