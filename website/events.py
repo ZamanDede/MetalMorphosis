@@ -142,7 +142,7 @@ def book(id):
             booking = Booking(quantity=form.quantity.data, user_id=current_user.id, event_id=id, order_id=order_id)
             db.session.add(booking)
             db.session.commit()
-            flash(f'Successfully booked {form.quantity.data} tickets for event {id}.', 'success')
+            flash(f'Successfully booked {form.quantity.data} tickets for event {event.title}.', 'success')
         else:
             flash(f'Sorry, only {event.ticket_count} tickets are available for this event.', 'danger')
     else:
