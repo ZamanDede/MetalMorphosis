@@ -1,31 +1,35 @@
 {% extends 'base.html' %}
 
 {% block header %}
-
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user-booking-history.css') }}">
 {% endblock %}
 
-
 {% block content %}
-        <div class="py-5">
-            <h1 class="display-4">Your Booking History</h1>
-        </div>
-
-        <div class="card-group">
+<main>
+    <h1 class="fw-bold text-center mb-4">Current Events</h1>
+    <div class="container">
+        <div class="row">
             {% for event in events %}
-            <div class="card mx-3">
-               <img class="card-img-top"
-                  src="{{ event.image_paths }}" alt="event picture">
-               <div class="card-body">
-                  <h5 class="card-title">{{ event.title }}</h5>
-                  <p class="card-text">{{ event.id }}</p>
-                  <p class="card-text">{{ event.status }}</p>
-                  <p class="card-text">{{ event.date }}</p>
-                  <p class="card-text">{{ event.genre }}</p>
-                  <p class="card-text">{{ event.artist_or_band }}</p>
-               </div>
-               <div class="card-footer"><a href="{{ url_for('event.show', id=event.id) }}" class ="btn btn-danger"> View Details </a></div>
+            <div class="col-md-4 mb-3 text-center">
+                <div class="card mx-auto custom-card">
+                    <img src="{{ url_for('static', filename=event.image_path) }}" class="card-img-top" alt="{{ event.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ event.title }}</h5>
+                        <p class="mb-2">Booking ID: {{ event.id }}</p>
+                        <p class="mb-2">Time and date booked: {{ event.date }}</p>
+                        <p class="mb-2">Event Status: {{ event.status }}</p>
+                        <p class="mb-auto">{{ event.genre }}</p>
+                        <a href="{{ url_for('events.show', id=event.id) }}" class="btn">Event Details</a>
+                    </div>
+                </div>
             </div>
+            {% if loop.index is divisibleby 3 and not loop.last %}
+            <div class="w-100"></div>
+            {% endif %}
             {% endfor %}
-         </div>
-      </div>
+        </div>
+    </div>
+
+</main>
 {% endblock %}

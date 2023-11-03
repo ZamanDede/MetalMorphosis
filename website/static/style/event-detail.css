@@ -1,0 +1,77 @@
+@import 'global-styles.css';
+@import 'carousel.css';
+
+
+/* TABLES */
+.table {
+    background-color: var(--primary-dark);
+    color: var(--primary-dark);
+    border-collapse: collapse;
+}
+
+.table thead {
+    border-bottom: 2px solid var(--accent);
+}
+
+.table tr {
+    background-color: var(--primary-dark);
+}
+
+
+
+/* BOOKING */
+
+/* Collapse Section Styles */
+#addedTickets .card {
+    background-color: var(--background);
+    border-color: var(--accent);
+}
+
+#addedTickets .card-body ul li {
+    color: var(--primary-light);
+}
+
+/* Input Styles */
+.form-control,
+.form-range {
+    background-color: var(--secondary-dark);
+    border: 1px solid var(--background);
+    color: var(--primary-light);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    background-color: var(--secondary-dark);
+    color: var(--primary-light);
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* Checkbox Styles */
+.form-check-label {
+    color: var(--primary-light);
+}
+
+.form-check-input:checked {
+    background-color: var(--accent);
+    border-color: var(--primary-light);
+}
+
+/* COMENT SECTION */
+
+/* Comment User Information */
+.link-light {
+    color: var(--secondary-light);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.link-light:hover, .link-light:focus {
+    color: var(--accent);
+    text-decoration: underline;
+}

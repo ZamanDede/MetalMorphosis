@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/create-event.css') }}">
+{% endblock %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<main>
+    <!-- Main Container -->
+    <div class="container mt-4">
+
+        <!-- Heading -->
+        <h2 class="text-center">Edit an Event</h2>
+
+        <!-- Create Event Form -->
+        <div class="event-form">
+            <form method="post" action="{{ url_for('events.edit_event', id=event.id) }}" enctype="multipart/form-data">
+                {{ render_form(form) }}
+                <!-- Submit and Cancel buttons -->
+                <div class="form-group">
+                    <a href="{{ url_for('events.show', id=event.id) }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

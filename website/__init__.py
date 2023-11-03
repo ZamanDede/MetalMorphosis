@@ -10,36 +10,33 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    # we use this utility module to display forms quickly
     Bootstrap5(app)
 
-    # this is a much safer way to store passwords
     Bcrypt(app)
 
     # a secret key for the session object
-    # (it would be better to use an environment variable here)
     app.secret_key = 'somerandomvalue'
 
     # Configure and initialise DB
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///website_db.sqlite'
     db.init_app(app)
 
-    # config upload folder
+    # Config upload folder
     UPLOAD_FOLDER = '/static/image'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-    # initialise the login manager
+    # Initialise the login manager
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    # create a user loader function takes userid and returns User
+    # Create a user loader function takes userid and returns User
     from .models import User  # importing here to avoid circular references
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # add Blueprints
+    # Blueprints
     from . import views
     app.register_blueprint(views.mainbp)
 
@@ -47,14 +44,14 @@ def create_app():
     app.register_blueprint(auth.authbp)
 
     from . import events
-    app.register_blueprint(events.eventsbp)  # Assuming the blueprint in events.py is named "eventsbp"
+    app.register_blueprint(events.eventsbp)
 
     @app.errorhandler(404)
     # inbuilt function which takes error as a parameter
     def not_found(e):
         return render_template("404.html", error=e)
 
-    # this creates a dictionary of variables that are available to all templates
+    # Create a dictionary of variables that are available to all templates
     @app.context_processor
     def get_context():
         year = datetime.datetime.today().year

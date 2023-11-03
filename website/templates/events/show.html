@@ -1,60 +1,100 @@
 {% extends 'base.html' %}
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='show.css') }}">
-{% endblock %}
-
 {% from 'bootstrap5/form.html' import render_form %}
+
+{% block header %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/event-detail.css') }}">
+{% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <!-- Event Header -->
-    <div class="row mt-5 mb-3">
-        <div class="col-md-12">
-            <div class="float-left">
-                <h1 class="mb-0">{{ event.title }}</h1>
-                <p>{{ event.genre }}</p>
+<main>
+    <div class="container my-5">
+        <!-- Event Title -->
+        <h1 class="display-1 text-center">{{ event.title }}</h1>
+
+        <!-- Event Image -->
+        <div class="row mb-4">
+            <div class="col">
+                <img src="{{ url_for('static', filename=event.image_path) }}" class="d-block w-100"
+                    alt="{{ event.title }}">
             </div>
-            <div class="float-right text-right">
-                <p class="mb-0">{{ event.venue }}</p>
-                <h2>{{ event.event_date.strftime('%B %d, %Y') }}</h2>
+        </div>
+
+        <!-- Event Details and Booking -->
+        <div class="row mb-4">
+            <!-- Event Details -->
+            <div class="col-md-6">
+                <h3 class="mb-3 text-center">Details</h3>
+                <table class="table table-dark table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Genre</th>
+                            <td>{{ event.genre }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Artist/Band</th>
+                            <td>{{ event.artist_or_band }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Location</th>
+                            <td>{{ event.location }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Venue</th>
+                            <td>{{ event.venue }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date</th>
+                            <td>{{ event.event_date.strftime('%B %d, %Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Status</th>
+                            <td>{{ event.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Booking -->
+            <div class="col-md-6 text-center">
+                <h3 class="mb-3">Book Tickets</h3>
+                {{ render_form(booking_form, action=url_for('events.book', id=event.id)) }}
+
+                <!-- Cancel Event Button -->
+                {% if current_user.is_authenticated and event.creator_id == current_user.id %}
+                <form action="{{ url_for('events.cancel', id=event.id) }}" method="post">
+                    <button type="submit" class="btn btn-warning">Cancel Event</button>
+                </form>
+                {% endif %}
+                <!-- Edit Event Button -->
+                {% if current_user.id == event.creator_id %}
+                <a href="{{ url_for('events.edit_event', id=event.id) }}" class="btn btn-primary">Edit Event</a>
+                {% endif %}
             </div>
         </div>
-    </div>
 
-    <!-- Event Details -->
-    <div class="card">
-        <img class="media-image" src="{{ url_for('static', filename=event.get_image()) }}" alt="{{ event.title }}">
-        <div class="card-content">
-            <small class="text-muted">{{ event.artist_or_band }}</small>
-            <h5>{{ event.location }}</h5>
-            <p>{{ event.description }}</p>
-            <!-- Booking Form -->
-            {{ render_form(booking_form, action=url_for('events.book', id=event.id)) }}
+        <!-- Comment Section -->
+        <h3 class="mb-4 text-center">Comments</h3>
+        <div class="row p-4">
+            <!-- Comment Form -->
+            <div class="col-8 offset-md-2 p-3">
+                {{ render_form(comment_form, action=url_for('events.comment', id=event.id)) }}
+            </div>
+
+            <!-- Existing Comments -->
+            {% for comment in event.comments %}
+            <div class="col-8 offset-md-2 p-3 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">{{ comment.user.name }}</h5>
+                    <small>{{ comment.created_at.strftime('%B %d, %Y, %I:%M %p') }}</small>
+                </div>
+                <p>{{ comment.text }}</p>
+            </div>
+            {% endfor %}
         </div>
     </div>
-
-    <hr>
-    <!-- Comments Section -->
-    <div class="row comments-section">
-        <div class="col-md-12">
-            <h2>Comments</h2>
-        </div>
-        <!-- Comment Form -->
-        <div class="col-md-12 border-bottom">
-            {{ render_form(comment_form, action=url_for('events.comment', id=event.id)) }}
-
-        </div>
-        <!-- List Comments -->
-        {% for comment in event.comments %}
-        <div class="col-md-12 comment">
-            <span class="comment-user">{{ comment.user.name }}</span>
-            <span class="comment-date text-muted">{{ comment.created_at.strftime('%B %d, %Y, %I:%M %p') }}</span>
-            <p class="comment-text">{{ comment.text }}</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
+</main>
 
 {% endblock %}

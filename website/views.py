@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from .models import Event, User, Booking  # Assuming Booking relates User with Event
+from flask import Blueprint, render_template, request, redirect, url_for
+from .models import Event, Booking
 from . import db
-from flask_login import login_required, current_user  # Assuming you're using Flask-Login for user management
+from flask_login import login_required, current_user
+from sqlalchemy import or_
 
 mainbp = Blueprint('main', __name__)
 
@@ -12,9 +13,19 @@ def index():
 
 @mainbp.route('/search')
 def search():
-    if request.args['search'] and request.args['search'] != "":
-        query = "%" + request.args['search'] + "%"
-        events = db.session.scalars(db.select(Event).where(Event.description.like(query)))
+    search_term = request.args.get('search')
+    if search_term:
+        search_term = "%%%s%%" % search_term
+        events = db.session.scalars(
+            db.select(Event).where(
+                or_(
+                    Event.title.like(search_term),
+                    Event.description.like(search_term),
+                    Event.genre.like(search_term),
+                    Event.artist_or_band.like(search_term)
+                )
+            )
+        ).all()
         return render_template('index.html', events=events)
     else:
         return redirect(url_for('main.index'))
@@ -26,5 +37,4 @@ def user_booking_history():
     booked_events = db.session.scalars(
         db.select(Event).join(Booking, Booking.event_id == Event.id).where(Booking.user_id == current_user.id)
     ).all()
-
     return render_template('booking.html', events=booked_events)
